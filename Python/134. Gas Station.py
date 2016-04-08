@@ -17,15 +17,17 @@ class Solution(object):
         if sum(gas) < sum(cost):
             return -1
 
+        sumcost = 0
         total = 0
         min_idx = 0
 
         for i in range(len(gas)):
-            if gas[i] + total < cost[i]:
+            total += gas[i] - cost[i]
+            if gas[i] + sumcost < cost[i]:
                 min_idx = i + 1
-                total = 0
+                sumcost = 0
             else:
-                total += gas[i] - cost[i]
+                sumcost += gas[i] - cost[i]
 
         if total >= 0:
             return min_idx
